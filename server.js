@@ -27,7 +27,6 @@ const replaceFolderName = str => {
 };
 
 const saveCache = (url, postData, response) => {
-  console.log("Save cache");
   fs.readFile(`${__dirname}/${serverHost}${url}/index.json`, "utf8", (error, data) => {
     if (error) {
       fs.mkdirsSync(`${__dirname}/${serverHost}${url}/`);
@@ -37,6 +36,7 @@ const saveCache = (url, postData, response) => {
     const cacheFileName = zeroPadding(caches.length + 1, 4);
     caches.push({ requestBody: postData, responseFile: cacheFileName });
 
+    console.log("Save cache", url, cacheFileName);
     fs.writeFile(`${__dirname}/${serverHost}${url}/index.json`, JSON.stringify(caches));
     fs.writeFile(`${__dirname}/${serverHost}${url}/${cacheFileName}`, JSON.stringify(response));
   });
@@ -62,7 +62,7 @@ const getResponseFromServer = async (url, postData, headers) => {
 };
 
 const getResponseFromCache = (url, cacheFileName) => {
-  console.log("Response from cache");
+  console.log("Response from cache", url, cacheFileName);
   const response = fs.readFileSync(`${__dirname}/${serverHost}${url}/${cacheFileName}`);
 
   return JSON.parse(response);
