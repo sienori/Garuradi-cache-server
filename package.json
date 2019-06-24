@@ -1,0 +1,16 @@
+{
+  "name": "garuradi-cache-server",
+  "version": "1.0.0",
+  "description": "A server that backs up tweets of Garuradi app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "sienori",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^8.0.1",
+    "request": "^2.88.0"
+  }
+}
